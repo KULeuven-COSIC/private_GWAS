@@ -29,3 +29,20 @@ export LD_LIBARY_PATH=/../nfllib/lib/(path naar folder met libnfllib.so file)
 
 The license of the FV-NFLlib and the NFLlib is GPLv3.
 
+MPC Component
+
+1. Getting Started
+
+Open the file MPC_GWAS.mpc, go to the main part of the file and change the necessary parameters (number of medical centers, threshold value for the χ2 significance, etc.). Save the file and compile it following the instructions detailed on the SPDZ-2 repository. 
+Secret shared inputs can be introduced by following the instructions on the SPDZ-2 repository and Google group https://groups.google.com/forum/#!forum/spdz. 
+Run the file and compile it following the instructions detailed on the SPDZ-2 repository. 
+
+2. Prerequisites
+
+Install SPDZ-2. Tested up to version 0.2. https://github.com/bristolcrypto/SPDZ-2. 
+Configure SPDZ-2 to run in 256 bits inputs. 
+Configure for the number of parties involved in the computation. 
+
+3. Licensing
+
+The license of the FV-NFLlib and the NFLlib is GPLv3.
