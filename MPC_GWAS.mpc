@@ -1,0 +1,60 @@
+# Algorithm for chi^2 significance test for 3 players and one triple for randomness; for 20 centers, 10000 patients each (with balanced contingency tables), input from player 0 only
+
+
+original = [Array(80, sint)]
+input = [sint(0) for i in range(80)]
+#c_input = [cint(0) for i in range(80)] 
+
+cont = [sint(0) for i in range(4)]
+#c_cont = [cint(0) for i in range(4)]
+N = cint(200000)
+U = [sint(0) for i in range(4)]
+numerator = sint(0)
+chi = cint(30) 
+
+for i in range (80):
+	original = sint.get_raw_input_from(0)
+	input[i] = original
+        #c_input[i] = input[i].reveal()
+#print_ln('THE INPUTS ARE %s', c_input)
+
+for i in range (4):
+	for j in range (20):
+		cont[i] = cont[i] + input[i+j+4]
+#		c_cont[i] = cont[i].reveal()
+#print_ln('THE CONTINGENCY TABLE IS %s' , c_cont)
+#print_ln('N IS %s' , N)
+
+RT1 = cont[0] + cont[1]
+RT2 = cont[2] + cont[3]
+CT1 = cont[0] + cont[2]
+CT2 = cont[1] + cont[3]
+
+model11 = RT1 * CT1
+model12 = RT1 * CT2
+model21 = RT2 * CT1
+model22 = RT2 * CT2
+
+square = (N * cont[0][0] - model11) ** 2
+U[0] = square * model11 
+U[1] = square * model12 
+U[2] = square * model21 
+U[3] = square * model22 
+
+for i in range(4):
+    numerator = numerator + U[i]
+
+denominator = N * model11 * model22
+
+#c_denominator = denominator.reveal()
+#c_numerator = numerator.reveal()
+
+tmpRight = chi * denominator 
+
+@if_e((numerator > tmpRight).reveal()==1)
+def block():
+   print_ln('THE RESULT IS SIGNIFICANT!')
+@else_
+def block():
+   print_ln('THE RESULT IS NOT SIGNIFICANT')
+
